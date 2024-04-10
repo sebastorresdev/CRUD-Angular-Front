@@ -1,0 +1,32 @@
+<div class="container">
+    <h1 class="h1 mt-3 text-primary">Lista de libros</h1>
+    <hr>
+    <div class="text-end mb-3">
+        <button class="btn btn-primary btn-lg" type="button" routerLink="/add-libros">Nuevo libro</button>
+    </div>
+    <table class="table table-hover">
+        <thead>
+          <tr class="table-primary">
+            <th scope="col">ID</th>
+            <th scope="col">Título</th>
+            <th scope="col">ISBN</th>
+            <th scope="col">Año de publicación</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            @for (item of items; track $index) {
+                <tr>
+                    <td>{{item.id}}</td>    
+                    <td>{{item.titulo}}</td>
+                    <td>{{item.isbn}}</td>
+                    <td>{{item.anio}}</td>
+                    <td>
+                        <button class="btn btn-info mx-2" routerLink="/edit-libros/id{{item.id}}">Editar</button>
+                        <button class="btn btn-danger mx-2">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+      </table>
+</div>

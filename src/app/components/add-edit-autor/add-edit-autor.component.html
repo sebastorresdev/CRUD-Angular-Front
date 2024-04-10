@@ -1,0 +1,28 @@
+<div class="container d-flex justify-content-center mt-5">
+<div class="card text-dark bg-light  mb-3" style="max-width: 30rem;">
+    <div class="card-header h3 text-primary">{{titulo}} autor</div>
+    <div class="card-body">
+      <div class="form-floating mb-3">
+        <form class="row g-3 needs-validation" [ngClass]="{'was-validated':form.invalid && inputValid}" [formGroup]="form" (ngSubmit)="addAutor()" novalidate>
+            <div class="form-floating mb-3">
+                <input formControlName="nombre" type="text" class="form-control" id="floatingInput" placeholder="nombre" required>
+                <label for="floatingInput" class="ms-2 text-secondary">Nombre</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input formControlName="apellido" type="text" class="form-control" id="floatingInput" placeholder="nombre" required>
+                <label for="floatingInput" class="ms-2 text-secondary">Apellido</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input formControlName="pais" type="text" class="form-control" id="floatingInput" placeholder="nombre" required>
+                <label for="floatingInput" class="ms-2 text-secondary">Pais</label>
+              </div>
+            <div class="col-12">
+              <button class="btn btn-danger me-2" type="submit" routerLink="/autores">Cancelar</button>
+              <button class="btn btn-info ms-2" type="submit">Guardar</button>
+            </div>
+          </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
