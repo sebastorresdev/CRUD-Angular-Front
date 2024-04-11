@@ -8,6 +8,7 @@ import { IAutor } from '../interfaces/IAutor';
   providedIn: 'root'
 })
 export class AutorService {
+
   private myAppUrl: string;
   private myApiUrl: string;
 
@@ -16,23 +17,23 @@ export class AutorService {
     this.myApiUrl = 'autor';
   }
 
-  getListaAutores() :Observable<IAutor[]>{
+  getListaAutores() :Observable<IAutor[]> {
     return this.http.get<IAutor[]>(`${this.myAppUrl}${this.myApiUrl}`);
   }
 
-  deleteAutor(id :number) :Observable<void>{
-    return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`)
+  getAutor(id : number) : Observable<IAutor> {
+    return this.http.get<IAutor>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
+  }
+  
+  updateAutor(id : number, autor:IAutor) : Observable<void> {
+    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}`, autor);
   }
 
-  saveAutor(autor:IAutor) : Observable<void>{
+  saveAutor(autor : IAutor) : Observable<void> {
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, autor);
   }
 
-  getAutor(id:number): Observable<IAutor>{
-    return this.http.get<IAutor>(`${this.myAppUrl}${this.myApiUrl}/${id}`)
-  }
-
-  updateAutor(id:number, autor:IAutor): Observable<void> {
-    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}`, autor);
+  deleteAutor(id : number) : Observable<void>{
+    return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
   }
 }

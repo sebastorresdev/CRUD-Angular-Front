@@ -1,28 +1,29 @@
 <div class="container d-flex justify-content-center mt-5">
-    <div class="card text-dark bg-light  mb-3" style="max-width: 30rem;">
-        <div class="card-header h3 text-primary">Agregar libro</div>
-        <div class="card-body">
+  <div class="card text-dark bg-light  mb-3" style="max-width: 30rem;">
+    <div class="card-header h3 text-primary">Agregar libro</div>
+    <div class="card-body">
+      <div class="form-floating mb-3">
+        <form class="row g-3 needs-validation" novalidate [ngClass]="{'was-validated':form.invalid && inputValid}"
+          [formGroup]="form" (ngSubmit)="addLibro()">
           <div class="form-floating mb-3">
-            <form class="row g-3 needs-validation" novalidate>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="nombre" required>
-                    <label for="floatingInput" class="ms-2 text-secondary">Título</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="nombre" required>
-                    <label for="floatingInput" class="ms-2 text-secondary">ISBN</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="nombre" required>
-                    <label for="floatingInput" class="ms-2 text-secondary">Año publicación</label>
-                  </div>
-                <div class="col-12">
-                  <button class="btn btn-danger me-2" type="submit">Submit form</button>
-                  <button class="btn btn-info ms-2" type="submit">Submit form</button>
-                </div>
-              </form>
-            
+            <input formControlName="titulo" type="text" class="form-control" id="floatingInput" placeholder="nombre" required>
+            <label for="floatingInput" class="ms-2 text-secondary">Título</label>
           </div>
-        </div>
+          <div class="form-floating mb-3">
+            <input formControlName="isbn" type="text" class="form-control" id="floatingInput" placeholder="nombre" required>
+            <label for="floatingInput" class="ms-2 text-secondary">ISBN</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input formControlName="anio" type="text" class="form-control" id="floatingInput" placeholder="nombre" required>
+            <label for="floatingInput" class="ms-2 text-secondary">Año publicación</label>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-danger me-2" type="submit" routerLink="/libros">Cancelar</button>
+            <button class="btn btn-info ms-2" type="submit">Guardar</button>
+          </div>
+        </form>
+
       </div>
     </div>
+  </div>
+</div>

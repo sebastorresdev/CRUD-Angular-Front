@@ -12,17 +12,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AddEditAutorComponent {
   form: FormGroup;
-  inputValid : boolean;
-  id:number;
-  titulo : string = 'Agregar';
+  inputValid: boolean;
+  id: number;
+  titulo: string = 'Agregar';
 
-  constructor(private fb:FormBuilder, private _autorService: AutorService, private router:Router, private aRouter:ActivatedRoute) {
+  constructor(private fb: FormBuilder, private _autorService: AutorService, private router: Router, private aRouter: ActivatedRoute) {
     this.form = this.fb.group({
-      nombre:['', Validators.required],
-      apellido:['', Validators.required],
-      pais:['', Validators.required],
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      pais: ['', Validators.required],
     })
-    this.inputValid= false;
+    this.inputValid = false;
     if (aRouter.snapshot.paramMap.get('id') == null) {
       this.id = -1;
     }
@@ -33,26 +33,26 @@ export class AddEditAutorComponent {
     }
   }
 
-  addAutor(){
+  addAutor() {
     this.inputValid = true;
     if (!this.form.invalid) {
-      const autor : IAutor = {
+      const autor: IAutor = {
         nombre: this.form.value.nombre,
         apellido: this.form.value.apellido,
-        pais:this.form.value.pais
+        pais: this.form.value.pais
       }
-      
+
       if (this.id == -1) {
-          console.log(this.id);
-          this._autorService.saveAutor(autor).subscribe(() => {
+        console.log(this.id);
+        this._autorService.saveAutor(autor).subscribe(() => {
           console.log('Autor agregado correctamente');
           this.router.navigate(['autores'])
-        })      
+        })
       }
       else {
-          autor.id = this.id;
-          console.log(autor);
-          this._autorService.updateAutor(this.id, autor).subscribe(() => {
+        autor.id = this.id;
+        console.log(autor);
+        this._autorService.updateAutor(this.id, autor).subscribe(() => {
           console.log('Autor actualizado correctamente');
           this.router.navigate(['autores'])
         })
@@ -60,13 +60,13 @@ export class AddEditAutorComponent {
     }
   }
 
-  getAutor(id:number) {
-    this._autorService.getAutor(id).subscribe((data:IAutor) => {
+  getAutor(id: number) {
+    this._autorService.getAutor(id).subscribe((data: IAutor) => {
       console.log(data);
       this.form.setValue({
-        nombre:data.nombre,
-        apellido:data.apellido,
-        pais:data.pais
+        nombre: data.nombre,
+        apellido: data.apellido,
+        pais: data.pais
       })
     })
   }

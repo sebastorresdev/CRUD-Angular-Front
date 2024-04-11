@@ -12,7 +12,7 @@ export class ListarAutoresComponent {
   
   constructor(private _autorService: AutorService) {}
 
-  ngOnInit():void {
+  ngOnInit() : void {
     this.getListaAutores();
   }
 
