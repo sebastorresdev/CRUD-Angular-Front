@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 // modulos
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // components
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -15,6 +15,11 @@ import { ListarLibrosComponent } from './components/listar-libros/listar-libros.
 import { ListarAutoresComponent } from './components/listar-autores/listar-autores.component';
 import { PresentacionComponent } from './components/presentacion/presentacion.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,12 +30,18 @@ import { HttpClientModule } from '@angular/common/http';
     ListarLibrosComponent,
     ListarAutoresComponent,
     PresentacionComponent,
+    LoginComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    FormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
   ],
   providers: [
     provideClientHydration()

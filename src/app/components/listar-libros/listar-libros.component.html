@@ -2,7 +2,7 @@
     <h1 class="h1 mt-3 text-primary">Lista de libros</h1>
     <hr>
     <div class="text-end mb-3">
-        <button class="btn btn-primary btn-lg" type="button" routerLink="/add-libros">Nuevo libro</button>
+        <button class="btn btn-primary btn-lg" type="button" routerLink="/dashboard/add-libros">Nuevo libro</button>
     </div>
     <table class="table table-hover">
         <thead>
@@ -22,7 +22,7 @@
                     <td>{{item.isbn}}</td>
                     <td>{{item.anio}}</td>
                     <td>
-                        <button class="btn btn-sm btn-info mx-2" routerLink="/edit-libros/{{item.id}}">Editar</button>
+                        <button class="btn btn-sm btn-info mx-2" routerLink="/dashboard/edit-libros/{{item.id}}">Editar</button>
                         <button class="btn btn-sm btn-danger mx-2" (click)="eliminarLibro(item.id!)">Eliminar</button>
                     </td>
                 </tr>

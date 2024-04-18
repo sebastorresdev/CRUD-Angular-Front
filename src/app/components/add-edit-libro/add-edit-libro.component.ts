@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LibroService } from '../../services/libro.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ILibro } from '../../interfaces/ILibro';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-edit-libro',
@@ -15,7 +16,13 @@ export class AddEditLibroComponent {
   id: number;
   titulo: string = 'Agregar';
 
-  constructor(private fb: FormBuilder, private _libroService: LibroService, private router: Router, private aRouter: ActivatedRoute) {
+  constructor(
+              private fb: FormBuilder, 
+              private _libroService: LibroService, 
+              private router: Router, 
+              private aRouter: ActivatedRoute,
+              private toastr: ToastrService) {
+
     this.form = this.fb.group({
       titulo: ['', Validators.required],
       isbn: ['', Validators.required],
@@ -44,7 +51,8 @@ export class AddEditLibroComponent {
         console.log(this.id);
         this._libroService.saveLibro(autor).subscribe(() => {
           console.log('Libro agregado correctamente');
-          this.router.navigate(['libros'])
+          this.toastr.success('Libro agregado correctamente', 'REGISTRO');
+          this.router.navigate(['dashboard/libros'])
         })
       }
       else {
@@ -52,7 +60,8 @@ export class AddEditLibroComponent {
         console.log(autor);
         this._libroService.updateLibro(this.id, autor).subscribe(() => {
           console.log('libro actualizado correctamente');
-          this.router.navigate(['libros'])
+          this.toastr.success('Libro actualizado correctamente', 'ACTUALIZACION');
+          this.router.navigate(['dashboard/libros'])
         })
       }
     }

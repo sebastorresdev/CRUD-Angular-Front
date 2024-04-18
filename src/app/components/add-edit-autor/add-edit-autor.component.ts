@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutorService } from '../../services/autor.service';
 import { IAutor } from '../../interfaces/IAutor';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -16,7 +17,14 @@ export class AddEditAutorComponent {
   id: number;
   titulo: string = 'Agregar';
 
-  constructor(private fb: FormBuilder, private _autorService: AutorService, private router: Router, private aRouter: ActivatedRoute) {
+  constructor(
+          private fb: FormBuilder, 
+          private _autorService: AutorService, 
+          private router: Router, 
+          private aRouter: ActivatedRoute, 
+          private toastr: ToastrService
+        ) {
+          
     this.form = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
@@ -46,15 +54,16 @@ export class AddEditAutorComponent {
         console.log(this.id);
         this._autorService.saveAutor(autor).subscribe(() => {
           console.log('Autor agregado correctamente');
-          this.router.navigate(['autores'])
+          this.toastr.success('Autor registrado correctamente', 'REGISTRO');
+          this.router.navigate(['dashboard/autores'])
         })
       }
       else {
         autor.id = this.id;
         console.log(autor);
         this._autorService.updateAutor(this.id, autor).subscribe(() => {
-          console.log('Autor actualizado correctamente');
-          this.router.navigate(['autores'])
+          this.toastr.success('Autor modificado correctamente', 'ACTUALIZACION');
+          this.router.navigate(['dashboard/autores'])
         })
       }
     }
